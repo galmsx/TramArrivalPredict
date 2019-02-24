@@ -17,7 +17,7 @@ class App extends React.Component
   {
     if(!id) {this.setState({arrivals:[]}); return;}
 
-  fetch(`https://api.tfl.gov.uk/StopPoint/${id}/Arrivals`,{method:"GET"})
+  fetch(`https://api.tfl.gov.uk/StopPoint/940GZZCRBED/Arrivals?app_id=11d81f3a&app_key=3dbf283b1f7682d9048d4fe669633d23`,{method:"GET"})
   .then(res=> res.json())
   .then(res=> {
     let arrivals;
