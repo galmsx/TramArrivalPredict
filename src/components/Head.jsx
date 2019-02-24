@@ -23,7 +23,7 @@ class Head extends React.Component
         fetch(`https://api.tfl.gov.uk/StopPoint/Search/${title}?modes=tram&maxResults=4&tflOperatedNationalRailStationsOnly=true&app_id=11d81f3a&app_key=3dbf283b1f7682d9048d4fe669633d23 `,{method:'GET'}) 
         .then(response => response.json())
         .then(data=>{
-            data = data.matches.filter((e)=>e.id.length == 11);
+            data = data.matches.filter((e)=>e.id.length == 11);//api doesnt have indo about shorter id's
             let helps = data.map((e)=>{
             return {title : e.name , id : e.id};
         });
