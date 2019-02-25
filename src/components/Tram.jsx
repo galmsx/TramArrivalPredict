@@ -3,7 +3,7 @@ import React from 'react';
  {
      if(err) return(
          <div className="list-item">
-         <strong>{"API doesn't work with this stop point."} <br/> {"ну что поделать("}</strong>
+         <strong>{"There are no trams today("}</strong>
          </div>
      );
      return(
