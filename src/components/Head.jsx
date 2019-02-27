@@ -18,18 +18,23 @@ class Head extends React.Component
     handleChange(e)
     {
         let title = e.target.value;
-        this.setState({title});
-        if(!title.length) {this.setState({helps:[]}); return;}
+        this.setState({title},()=>{
+            if(!title.length) {this.setState({helps:[]})}
+        });
+       if(!title.length) return;
         fetch(`https://api.tfl.gov.uk/StopPoint/Search/${title}?modes=tram&maxResults=4&tflOperatedNationalRailStationsOnly=true&app_id=11d81f3a&app_key=3dbf283b1f7682d9048d4fe669633d23 `,{method:'GET'}) 
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok) throw Error(response.statusText);
+            return response.json();
+        })
         .then(data=>{
-            data = data.matches.filter((e)=>e.id.length == 11);//api doesnt have indo about shorter id's
+            data = data.matches;
             let helps = data.map((e)=>{
             return {title : e.name , id : e.id};
         });
         this.setState({helps});
     })
-        .catch(alert)
+        .catch(e=>console.log(e))
     }
 
     onChoiceHandler(id,title){
